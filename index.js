@@ -45,11 +45,11 @@ RestifyOAuthServer.prototype.authenticate = function(options) {
       })
       .tap(function(token) {
         res.oauth = { token: token };
+        return next;
       })
       .catch(function(e) {
         return handleError(e, req, res);
-      })
-      .finally(next);
+      });
   };
 };
 
